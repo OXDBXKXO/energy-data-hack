@@ -1,10 +1,7 @@
-"""
-Script python pour ouvrir les fichiers de traces de clavier
-
-"""
-
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
+
+import plot
 
 
 def read_int(f):
@@ -82,27 +79,15 @@ class Capture:
         return self.__frames
 
 
-def plot_frame(frame, title="Sans titre"):
-    plt.plot(range(1, len(frame) + 1), frame, 'ko')
-    plt.xlabel('numéro de pic')
-    plt.ylabel('valeur du pic')
-    plt.title(title)
-    plt.ylim(0, 1.5)
-    plt.grid(b=True, which='both')
-
-
 def main():
-    pics_nokey = Capture.load_from_file("../Hackaton/data/pics_NOKEY.bin")
-    pics_pad0 = Capture.load_from_file("../Hackaton/data/pics_0.bin")
+    pics_nokey = Capture.load_from_file("../../Hackaton/data/pics_NOKEY.bin")
+    pics_pad0 = Capture.load_from_file("../../Hackaton/data/pics_0.bin")
 
-    ######### Pics ############
     plt.figure(1)
     # NO KEY
-    plt.subplot(211)
-    plot_frame(pics_nokey.frames[0], "Sans touches")
+    plot.frame(pics_nokey.frames[0], 211, "Sans touches")
     # PAD-0
-    plt.subplot(212)
-    plot_frame(pics_pad0.frames[0], "Touche 0")
+    plot.frame(pics_pad0.frames[0], 212, "Touche 0")
     #
     plt.show()
 
