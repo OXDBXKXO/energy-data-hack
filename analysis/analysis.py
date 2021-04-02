@@ -45,7 +45,7 @@ class CaptureInfo:
         self.__freq_pic_khz = read_double(file)
         self.__norm_fact = read_double(file)
 
-    def print(self):
+    def printInfo(self):
         print(f"Nb pics par trame : {self.__spike_count_per_frame}")
         print(f"Frequence d'echantillonnage : {self.__freq_sampling_khz} kHz")
         print(f"Frequence trame: {self.__freq_trame_hz} Hz")
@@ -78,18 +78,53 @@ class Capture:
     def frames(self):
         return self.__frames
 
+class Fingerprint:
+    def __init__(self, data):
+        self.nokey = Capture.load_from_file("../../given/data/pics_NOKEY.bin").frames
+        self.file = Capture.load_from_file("../../given/data/{}".format(data)).frames
+
+        self.diffs = []
+        for i in range(len(self.file)):
+            if i >= len(self.nokey):
+                break
+
+            diff = []
+            exit_for = False
+            for j in range(len(self.nokey[i])):
+                if j >= len(self.file[i]):
+                    exit_for = True
+                    break
+
+                diff.append(self.file[i][j] - self.nokey[i][j])
+
+            if exit_for:
+                break
+
+            self.diffs.append(diff)
+
+    def mean(self):
+        means = []
+        for diff in self.diffs:
+            means.append(np.mean(diff))
+
+        return np.mean(means)
+
 
 def main():
-    pics_nokey = Capture.load_from_file("../../Hackaton/data/pics_NOKEY.bin")
-    pics_pad0 = Capture.load_from_file("../../Hackaton/data/pics_0.bin")
+    pics_pad0 = Fingerprint("pics_1.bin")
+    print(pics_pad0.mean())
+    # pics_nokey = Capture.load_from_file("../../given/data/pics_NOKEY.bin")
+    # pics_pad0 = Capture.load_from_file("../../given/data/pics_0.bin")
 
-    plt.figure(1)
-    # NO KEY
-    plot.frame(pics_nokey.frames[0], 211, "Sans touches")
-    # PAD-0
-    plot.frame(pics_pad0.frames[0], 212, "Touche 0")
-    #
-    plt.show()
+    # plt.figure(1)
+    # # NO KEY
+    # for i in range(10):
+    #     plot.frame(pics_nokey.frames[i], 211, "Sans touches")
+
+    # # PAD-0
+    # plot.frame(pics_pad0.frames[0], 212, "Touche 0")
+    # #
+    # plt.show()
 
 
 if __name__ == "__main__":
