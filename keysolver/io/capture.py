@@ -61,3 +61,7 @@ class Capture:
     @property
     def frames(self):
         return self.__frames
+
+    @property
+    def nb_frames(self):
+        return len(self.__frames)
