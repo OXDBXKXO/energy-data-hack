@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def __read_int(file):
+def read_int(file):
     ba = bytearray(4)
     file.readinto(ba)
     prm = np.frombuffer(ba, dtype=np.int32)
@@ -9,7 +9,7 @@ def __read_int(file):
     return prm[0]
 
 
-def __read_double(file):
+def read_double(file):
     ba = bytearray(8)
     file.readinto(ba)
     prm = np.frombuffer(ba, dtype=np.double)
@@ -17,7 +17,7 @@ def __read_double(file):
     return prm[0]
 
 
-def __read_double_tab(file, n):
+def read_double_tab(file, n):
     ba = bytearray(8 * n)
     nr = file.readinto(ba)
 
@@ -33,19 +33,19 @@ class Capture:
 
     def __init__(self, file_path):
         with open(file_path, "rb") as file:
-            self.__spikes_per_frame = __read_int(file)
-            self.__freq_sampling_khz = __read_double(file)
-            self.__freq_frame_hz = __read_double(file)
-            self.__freq_spike_khz = __read_double(file)
-            self.__norm_fact = __read_double(file)
+            self.__spikes_per_frame = read_int(file)
+            self.__freq_sampling_khz = read_double(file)
+            self.__freq_frame_hz = read_double(file)
+            self.__freq_spike_khz = read_double(file)
+            self.__norm_fact = read_double(file)
 
             self.__frames = []
 
-            frame = __read_double_tab(file, self.__spikes_per_frame)
+            frame = read_double_tab(file, self.__spikes_per_frame)
 
             while len(frame) != 0:
                 self.__frames.append(frame)
-                frame = __read_double_tab(file, self.__spikes_per_frame)
+                frame = read_double_tab(file, self.__spikes_per_frame)
 
     def print_info(self):
         print(f"Spikes per frames: {self.spikes_per_frame}")
