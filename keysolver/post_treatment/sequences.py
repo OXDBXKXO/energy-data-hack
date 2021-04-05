@@ -1,35 +1,35 @@
-def get_all_possible_sequences(possible_letters_seq):
+def get_all_possible_sequences(possible_keys_seq):
     """
-    Get all possible sequences from a list of possible letters list.
+    Get all possible sequences from a list of possible keys list.
 
     Arguments:
-        possible_letters_seq:   A list of possible letters list.
+        possible_keys_seq:   A list of possible keys list.
 
     Returns:
         A list containing all the possible sequences.
 
     Examples:
         >>> ks.get_all_possible_sequences([['A'], ['B', 'C'], ['D']])
-        ['ACD', 'ABD']
+        ['A C D', 'A B D']
 
         >>> ks.get_all_possible_sequences([['A'], ['B', 'C'], ['D', 'E']])
-        ['ACD', 'ACE', 'ABD', 'ABE']
+        ['A C D', 'A C E', 'A B D', 'A B E']
     """
 
     previous_stack = []
     next_stack = []
 
-    for letter in possible_letters_seq[0]:
-        previous_stack.append(letter)
+    for key in possible_keys_seq[0]:
+        previous_stack.append(key)
 
-    for i in range(1, len(possible_letters_seq)):
-        possible_letters = possible_letters_seq[i]
+    for i in range(1, len(possible_keys_seq)):
+        possible_keys = possible_keys_seq[i]
 
         while len(previous_stack) != 0:
-            word = previous_stack.pop()
+            keys = previous_stack.pop()
 
-            for letter in possible_letters:
-                next_stack.append(word + letter)
+            for key in possible_keys:
+                next_stack.append(keys + " " + key)
 
         previous_stack = next_stack
         next_stack = []
