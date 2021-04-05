@@ -35,3 +35,14 @@ possible d'appeler individuellement les fonctions que la fonction 'solve'
 appelle.
 
 ## Le dossier 'word_guesser'
+
+Le dossier 'word_guesser' contient toute la logique relative à la recherche des
+identifiants à partir du résultat brut de 'keysolver'. Nous avons choisi l'approche
+de l'attaque par dictionnaire personnalisé. Dans le cas d'une attaque réelle, un attaquant
+cherchera à personnaliser son attaque en créant un dictionnaire relatif à sa cible. Nous
+avons donc créé l'outil 'custom_wordlist_gen.py' qui permet de créer un dictionnaire à partir d'une
+liste de mots prédéfinis. Dans notre cas cette liste contient des mots comme "hackaton",
+"energy", "data" ou "2021". Nous avons ensuite créé l'outil 'wordlist_levenshtein.py'
+qui permet de renvoyer les mots avec la plus faible distance de Levenshtein par rapport à un
+mot ou d'une liste de mots. Dans notre cas, nous utilisons en entrée la liste de tous
+les mots possibles renvoyée par 'keysolver'.
