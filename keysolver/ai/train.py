@@ -5,8 +5,8 @@ import os
 
 import keysolver.io.capture as capture
 
-def train_ai(dataset_path, dataset_filename_model, save_file_path = \
-            os.path.join(os.path.dirname(__file__), "ai_model.joblib"), \
+def train_ai(dataset_path, dataset_filename_model, \
+            save_file_path = "ai_model.joblib", \
             keys = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', \
             'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', \
             'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', \
@@ -24,8 +24,8 @@ def train_ai(dataset_path, dataset_filename_model, save_file_path = \
 
         save_file_path:         The path of the file in which the AI training
                                 is saved. By default, it is saved in a file
-                                'ai_model.joblib', in the same directory of this
-                                file.
+                                'ai_model.joblib', in the current working
+                                directory.
 
         keys:                   The name of the keys to train the AI with. They
                                 are used to build the name of the training
@@ -72,6 +72,10 @@ def train_ai(dataset_path, dataset_filename_model, save_file_path = \
 
     # Save the AI in the file if valid save_file
     if save_file_path != None and save_file_path != "":
-        dump(clf, save_file_path)
+        # If file already exists, raise an Exception
+        if os.path.exists(save_file_path):
+            raise Exception("File already exists, please remove it if you want to override it")
+        else:
+            dump(clf, save_file_path)
 
     return training_accuracy, test_accuracy
