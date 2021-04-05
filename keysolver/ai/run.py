@@ -1,5 +1,5 @@
 from joblib import load
-import os, sys
+import os
 
 import keysolver.io.capture as capture
 
