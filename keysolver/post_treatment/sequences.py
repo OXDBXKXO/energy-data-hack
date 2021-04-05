@@ -1,4 +1,20 @@
 def get_all_possible_sequences(possible_letters_seq):
+    """
+    Get all possible sequences from a list of possible letters list.
+
+    Arguments:
+        possible_letters_seq:   A list of possible letters list.
+
+    Returns:
+        A list containing all the possible sequences.
+
+    Examples:
+        >>> ks.get_all_possible_sequences([['A'], ['B', 'C'], ['D']])
+        ['ACD', 'ABD']
+
+        >>> ks.get_all_possible_sequences([['A'], ['B', 'C'], ['D', 'E']])
+        ['ACD', 'ACE', 'ABD', 'ABE']
+    """
 
     previous_stack = []
     next_stack = []
