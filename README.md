@@ -8,6 +8,9 @@ au hackathon Energy Data Hack, réalisé par le ministère des armées.
 L'installation des dépendances est donnée par la commande :
 > pip install -r requirements.txt
 
+Il est possible de télécharger le modèle d'IA pré-généré depuis
+la section "Releases" de ce depôt Git.
+
 # Vue d'ensemble
 
 ## Le dossier docs
