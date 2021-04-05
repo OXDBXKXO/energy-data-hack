@@ -5,7 +5,8 @@ import os
 
 import keysolver.io.capture as capture
 
-def train_ai(dataset_path, dataset_filename_model, save_file = None, \
+def train_ai(dataset_path, dataset_filename_model, save_file = \
+            os.path.join(os.path.dirname(__file__), "ai_model.joblib"), \
             keys = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', \
             'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', \
             'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', \
@@ -30,7 +31,7 @@ def train_ai(dataset_path, dataset_filename_model, save_file = None, \
     training_accuracy = clf.score(X_train, y_train)
     test_accuracy = clf.score(X_test, y_test)
 
-    if save_file != None:
+    if save_file != None and save_file != "":
         dump(clf, save_file)
 
     return training_accuracy, test_accuracy
