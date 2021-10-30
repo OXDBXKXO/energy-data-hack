@@ -1,15 +1,15 @@
-# Energy Data Hack
+# Hackaton Energy Data Hack
 
-Ce dossier contient tous les dossiers et fichiers relatifs à notre contribution
-au hackathon Energy Data Hack, réalisé par le ministère des armées.
+Ce dépôt contient tous les dossiers et fichiers relatifs à notre contribution
+au hackathon Energy Data Hack, organisé par le Ministère des Armées.
 
 # Dépendances
 
-L'installation des dépendances est donnée par la commande :
+L'installation des dépendances est réalisée par la commande :
 > pip install -r requirements.txt
 
 Il est possible de télécharger le modèle d'IA pré-généré depuis
-la section "Releases" de ce depôt Git.
+la section "Releases" de ce dépôt.
 
 # Vue d'ensemble
 
@@ -20,22 +20,19 @@ documentation a été générée grâce à doxypypy.
 
 ## La bibliothèque 'keysolver'
 
-Le dossier 'keysolver' est le dossier de la bibliothèque, il contient le
-fichier 'solve.py', contenant la fonction 'solve' permettant de trouver
-les touches contenues dans un fichier.
+Le dossier 'keysolver' contient le fichier 'solve.py', dont la fonction 
+'solve' permet de retrouver les touches contenues dans un fichier.
 
 Le dossier 'keysolver' est, d'autre part, découpé en trois dossiers :
 * Le dossier 'ai' contient les fichiers relatifs à l'IA permettant de
-trouver quelles touches ont été pressées.
+retrouver quelles touches ont été pressées.
 * Le dossier 'io' contient des fichiers permettant des manipulations d'entrée
 et sortie.
-* Le dossier 'post_treatment' contient les fichiers relatifs au post traitement
+* Le dossier 'post_treatment' contient les fichiers relatifs au post-traitement
 du résultat de l'IA
 
 Un ficher notebook 'main.ipynb' est à disposition à la racine, il s'agit d'un
-exemple d'utilisation minimale de la bibliothèque. Si nécessaire, il est
-possible d'appeler individuellement les fonctions que la fonction 'solve'
-appelle.
+exemple d'utilisation minimale de la bibliothèque.
 
 ## Le dossier 'word_guesser'
 
